@@ -159,14 +159,19 @@
             margin-bottom: var(--space-5);
             display: flex;
             align-items: center;
-            gap: 10px;
+            gap: 12px;
         }
-        .sidebar-brand::before {
-            content: '';
-            display: block;
-            width: 18px; height: 18px;
+        .sidebar-logo {
+            width: 32px;
+            height: 32px;
             background: var(--brand);
-            border-radius: 4px;
+            border-radius: 8px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: 900;
+            color: white;
+            font-size: 16px;
             flex-shrink: 0;
         }
         .nav-version { font-family: var(--font-mono); font-size: 0.7rem; color: var(--brand); margin-bottom: var(--space-5); }
@@ -507,7 +512,10 @@
 
     <!-- SIDEBAR NAVIGATION -->
     <nav class="sidebar">
-        <div class="sidebar-brand">Chiti UDS</div>
+        <div class="sidebar-brand">
+            <div class="sidebar-logo">C</div>
+            <span>Chiti UDS</span>
+        </div>
         <div class="nav-version">v3.0.0 — MASTER</div>
 
         <div class="nav-group">
@@ -1125,18 +1133,47 @@
         let isScrolling = false;
         let sections, navLinks, observer;
 
+        // Throttle function for performance
+        function throttle(func, limit) {
+            let inThrottle;
+            return function() {
+                const args = arguments;
+                const context = this;
+                if (!inThrottle) {
+                    func.apply(context, args);
+                    inThrottle = true;
+                    setTimeout(() => inThrottle = false, limit);
+                }
+            }
+        }
+
         function updateScrollSpy() {
             // Clear previous active states
             document.querySelectorAll('.nav-link').forEach(link => link.classList.remove('active'));
 
-            // Find the current section
-            const scrollY = window.scrollY + 100; // Offset for header
-            const currentSection = Array.from(document.querySelectorAll('section[id]')).find(section => {
+            // Find the current section based on viewport center
+            const viewportCenter = window.scrollY + (window.innerHeight / 2);
+            const sections = Array.from(document.querySelectorAll('section[id]'));
+
+            // Find the section that contains the viewport center
+            let currentSection = null;
+            let minDistance = Infinity;
+
+            for (const section of sections) {
                 const rect = section.getBoundingClientRect();
                 const sectionTop = rect.top + window.scrollY;
                 const sectionBottom = sectionTop + rect.height;
-                return scrollY >= sectionTop && scrollY < sectionBottom;
-            });
+                const sectionCenter = sectionTop + (rect.height / 2);
+
+                // Calculate distance from viewport center to section center
+                const distance = Math.abs(viewportCenter - sectionCenter);
+
+                // Find the section closest to viewport center
+                if (distance < minDistance) {
+                    minDistance = distance;
+                    currentSection = section;
+                }
+            }
 
             if (currentSection) {
                 const id = currentSection.getAttribute('id');
@@ -1152,8 +1189,9 @@
             navLinks = document.querySelectorAll('.nav-link');
             console.log('Scroll Spy: Initialized with', sections.length, 'sections and', navLinks.length, 'nav links');
 
-            // Use scroll event instead of IntersectionObserver for more reliable detection
-            window.addEventListener('scroll', updateScrollSpy, { passive: true });
+            // Use throttled scroll event for better performance
+            const throttledScrollSpy = throttle(updateScrollSpy, 100);
+            window.addEventListener('scroll', throttledScrollSpy, { passive: true });
             updateScrollSpy(); // Initial call
         }
 
@@ -1171,11 +1209,21 @@
                 const targetId = link.getAttribute('href').substring(1);
                 const targetSection = document.getElementById(targetId);
                 if (targetSection) {
-                    const offsetTop = targetSection.offsetTop - 80; // Account for fixed header
+                    // Close mobile sidebar if open
+                    document.querySelector('.sidebar').classList.remove('open');
+
+                    // Scroll to section with proper offset
+                    const headerHeight = 80;
+                    const targetPosition = targetSection.offsetTop - headerHeight;
+
                     window.scrollTo({
-                        top: offsetTop,
+                        top: targetPosition,
                         behavior: 'smooth'
                     });
+
+                    // Update active state immediately
+                    document.querySelectorAll('.nav-link').forEach(l => l.classList.remove('active'));
+                    link.classList.add('active');
                 }
             });
         });
