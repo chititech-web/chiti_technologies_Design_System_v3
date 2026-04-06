@@ -1,0 +1,26 @@
+{
+  "name": "chiti_technologies_design_system_v3",
+  "version": "1.0.0",
+  "description": "Chiti Technologies Unified Design System V3 — Components, tokens, and patterns for BazaarSetu, NetQ Command, and Project Nova.",
+  "main": "index.js",
+  "scripts": {
+    "storybook": "storybook dev -p 6006",
+    "build-storybook": "storybook build",
+    "dev": "storybook dev -p 6006",
+    "build": "storybook build"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/prabhakarmdes12-cmyk/chiti_technologies_Design_System_v3.git"
+  },
+  "keywords": ["design-system", "ui-components", "chiti"],
+  "author": "Prabhakar Kumar",
+  "license": "MIT",
+  "devDependencies": {
+    "@storybook/addon-essentials": "^8.6.18",
+    "@storybook/blocks": "^8.6.18",
+    "@storybook/html": "^8.6.18",
+    "@storybook/html-vite": "^8.6.18",
+    "storybook": "^8.6.18"
+  }
+}
