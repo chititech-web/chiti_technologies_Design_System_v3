@@ -233,6 +233,7 @@
             .border-radius-grid { grid-template-columns: repeat(3, 1fr) !important; }
             .border-radius-grid > div { margin-bottom: var(--space-2); }
             .figma-locked { padding: var(--space-4); }
+            .who-is-this-for { grid-template-columns: 1fr; }
         }
         
         /* Navigation Links */
@@ -846,6 +847,59 @@
             border-color: var(--brand);
             color: var(--brand);
         }
+
+        /* Who Is This For Section */
+        .who-is-this-for {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: var(--space-3);
+            margin-bottom: var(--space-5);
+        }
+        .audience-card {
+            background: var(--surface-2);
+            border: 1px solid var(--border);
+            border-radius: var(--radius-md);
+            padding: var(--space-3);
+            display: flex;
+            align-items: flex-start;
+            gap: var(--space-3);
+        }
+        .audience-icon {
+            font-size: 1.5rem;
+            flex-shrink: 0;
+        }
+        .audience-info h3 {
+            font-family: var(--font-display);
+            font-size: 0.9rem;
+            font-weight: 600;
+            color: var(--text-main);
+            margin-bottom: 4px;
+        }
+        .audience-info p {
+            font-size: 0.8rem;
+            color: var(--text-muted);
+            margin: 0;
+            line-height: 1.4;
+        }
+
+        /* Integration Banner */
+        .integration-banner {
+            background: var(--surface-2);
+            padding: var(--space-3);
+            border-radius: var(--radius-md);
+            margin-bottom: var(--space-4);
+            border-left: 3px solid var(--brand);
+        }
+        .integration-banner p {
+            margin: 0;
+            font-size: 0.9rem;
+            color: var(--text-muted);
+        }
+        .integration-banner a {
+            color: var(--brand);
+            text-decoration: none;
+            font-weight: 600;
+        }
         .figma-status {
             display: inline-flex;
             align-items: center;
@@ -999,16 +1053,41 @@
     <main class="main-content">
         
         <header style="margin-bottom: var(--space-6);">
-            <div class="tag">Internal Engineering Reference</div>
-            <h1>Unified Design System</h1>
-            <p>The proprietary, multi-theme, density-aware component architecture for BazaarSetu, NetQ Command, and Project Nova. Toggle the controls above to see it adapt in real time.</p>
+            <div class="tag">Open Source • v3.0.0</div>
+            <h1>Chiti UDS</h1>
+            <p>The design system powering BazaarSetu, NetQ Command, and Project Nova. One source of truth for design and development — built for teams who ship fast without breaking consistency.</p>
         </header>
 
+        <!-- Who Is This For -->
+        <div class="who-is-this-for">
+            <div class="audience-card">
+                <div class="audience-icon">🎨</div>
+                <div class="audience-info">
+                    <h3>UX Designers</h3>
+                    <p>Open in Figma → Use component library → Export specs to devs</p>
+                </div>
+            </div>
+            <div class="audience-card">
+                <div class="audience-icon">⚡</div>
+                <div class="audience-info">
+                    <h3>Developers</h3>
+                    <p>Copy CSS tokens → Paste into code → Ship consistent UIs</p>
+                </div>
+            </div>
+            <div class="audience-card">
+                <div class="audience-icon">🚀</div>
+                <div class="audience-info">
+                    <h3>Product Teams</h3>
+                    <p>One language for design + dev. No more "that's not in the spec".</p>
+                </div>
+            </div>
+        </div>
+
         <!-- Integration Banner -->
-        <div class="integration-banner" style="background: var(--surface-2); padding: var(--space-3); border-radius: var(--radius-md); margin-bottom: var(--space-4); border-left: 3px solid var(--brand);">
-            <p style="margin: 0; font-size: 0.9rem; color: var(--text-muted);">
-                🚀 <strong>Need a full website?</strong>
-                <a href="https://chiti.studio" target="_blank" style="color: var(--brand); text-decoration: none; font-weight: 600;">Chiti Studio</a>
+        <div class="integration-banner">
+            <p>
+                <strong>Need a full website?</strong> 
+                <a href="https://chiti.studio" target="_blank">Chiti Studio</a>
                 builds premium digital experiences using this design system.
             </p>
         </div>
@@ -1470,7 +1549,7 @@
         <!-- ── RESOURCES ── -->
         <section id="r-figma">
             <h2>IV.A — Figma Design Library</h2>
-            <p>The visual source of truth for all Chiti design system components. Available to team members with authorized access.</p>
+            <p>The visual source of truth for all Chiti design system components. Design in Figma → Hand off to developers with confidence.</p>
             
             <div class="figma-locked">
                 <div class="figma-icon">
@@ -1481,49 +1560,68 @@
                         <path d="M20 4C22.2091 4 24 5.79086 24 8C24 10.2091 22.2091 12 20 12H16V8C16 5.79086 17.7909 4 20 4Z" fill="var(--brand)" opacity="0.6"/>
                     </svg>
                 </div>
-                <div class="figma-status">Compiling — Coming Soon</div>
-                <h3>Figma Library is Being Prepared</h3>
-                <p>Our design team is currently compiling the comprehensive Figma component library. Request access to be notified when it's ready.</p>
+                <div class="figma-status">Launching Soon</div>
+                <h3>Figma Library — Coming This Week</h3>
+                <p>Our design team is finalizing the complete Figma component library with variants, states, and interactive prototypes. Get notified when it goes live.</p>
                 
                 <div class="figma-password-form">
-                    <input type="password" class="figma-password-input" id="figmaPassword" placeholder="Enter access password" autocomplete="off">
-                    <button class="figma-submit-btn" onclick="checkFigmaPassword()">Unlock Figma Library</button>
-                    <p class="figma-error-msg" id="figmaError">Incorrect password. Contact your team lead for access.</p>
+                    <input type="email" class="figma-password-input" id="figmaEmail" placeholder="Enter your email" autocomplete="off">
+                    <button class="figma-submit-btn" onclick="notifyMe()">Notify Me</button>
+                    <p class="figma-error-msg" id="figmaError">Please enter a valid email address.</p>
                 </div>
 
                 <div class="figma-request-access">
-                    <p>Don't have access credentials?</p>
-                    <a href="mailto:design@chiti.studio?subject=Figma Library Access Request" class="figma-email-link">
+                    <p>Need immediate access?</p>
+                    <a href="mailto:design@chiti.studio?subject=Urgent Figma Access Request" class="figma-email-link">
                         <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
                             <path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/>
                             <polyline points="22,6 12,13 2,6"/>
                         </svg>
-                        Request Access
+                        Contact Design Team
                     </a>
                 </div>
             </div>
         </section>
 
         <section id="r-docs">
-            <h2>IV.B — Documentation</h2>
-            <p>Technical documentation and integration guides for implementing the Chiti design system.</p>
+            <h2>IV.B — Developer Resources</h2>
+            <p>Ready-to-use code snippets, token exports, and integration guides for your stack.</p>
             
             <div class="comp-grid">
                 <div class="comp-card">
-                    <div class="comp-card-header"><span class="comp-card-title">Available Soon</span></div>
+                    <div class="comp-card-header"><span class="comp-card-title">Available Now</span></div>
+                    <div class="comp-card-body">
+                        <div class="demo-stage" style="flex-direction: column; align-items: flex-start; gap: 12px;">
+                            <div style="padding: 12px; background: var(--surface-2); border-radius: var(--radius-sm); width: 100%;">
+                                <div style="font-size: 0.8rem; color: var(--text-muted); margin-bottom: 4px;">NPM Package</div>
+                                <div style="font-size: 0.75rem; color: var(--brand);">@chiti/ui</div>
+                            </div>
+                            <div style="padding: 12px; background: var(--surface-2); border-radius: var(--radius-sm); width: 100%;">
+                                <div style="font-size: 0.8rem; color: var(--text-muted); margin-bottom: 4px;">GitHub Repo</div>
+                                <div style="font-size: 0.75rem; color: var(--brand);">github.com/chiti/ui</div>
+                            </div>
+                            <div style="padding: 12px; background: var(--surface-2); border-radius: var(--radius-sm); width: 100%;">
+                                <div style="font-size: 0.8rem; color: var(--text-muted); margin-bottom: 4px;">CSS Tokens</div>
+                                <div style="font-size: 0.75rem; color: var(--text-muted); opacity: 0.6;">Copy directly from this page</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="comp-card">
+                    <div class="comp-card-header"><span class="comp-card-title">Coming Soon</span></div>
                     <div class="comp-card-body">
                         <div class="demo-stage" style="flex-direction: column; align-items: flex-start; gap: 12px;">
                             <div style="padding: 12px; background: var(--surface-2); border-radius: var(--radius-sm); width: 100%;">
                                 <div style="font-size: 0.8rem; color: var(--text-muted); margin-bottom: 4px;">Integration Guide</div>
-                                <div style="font-size: 0.75rem; color: var(--text-muted); opacity: 0.6;">React, Vue, HTML implementations</div>
+                                <div style="font-size: 0.75rem; color: var(--text-muted); opacity: 0.6;">React, Vue, HTML tutorials</div>
                             </div>
                             <div style="padding: 12px; background: var(--surface-2); border-radius: var(--radius-sm); width: 100%;">
-                                <div style="font-size: 0.8rem; color: var(--text-muted); margin-bottom: 4px;">Token Reference</div>
-                                <div style="font-size: 0.75rem; color: var(--text-muted); opacity: 0.6;">CSS & JSON token exports</div>
+                                <div style="font-size: 0.8rem; color: var(--text-muted); margin-bottom: 4px;">Storybook</div>
+                                <div style="font-size: 0.75rem; color: var(--text-muted); opacity: 0.6;">Interactive component playground</div>
                             </div>
                             <div style="padding: 12px; background: var(--surface-2); border-radius: var(--radius-sm); width: 100%;">
                                 <div style="font-size: 0.8rem; color: var(--text-muted); margin-bottom: 4px;">Changelog</div>
-                                <div style="font-size: 0.75rem; color: var(--text-muted); opacity: 0.6;">Version history & migration guides</div>
+                                <div style="font-size: 0.75rem; color: var(--text-muted); opacity: 0.6;">Version history & updates</div>
                             </div>
                         </div>
                     </div>
@@ -1824,33 +1922,36 @@
             document.getElementById('btnSpec').classList.toggle('active');
         }
 
-        // ── Figma Password Check ──
-        function checkFigmaPassword() {
-            const input = document.getElementById('figmaPassword');
+        // ── Figma Notify Me ──
+        function notifyMe() {
+            const input = document.getElementById('figmaEmail');
             const error = document.getElementById('figmaError');
-            const password = input.value.trim();
+            const email = input.value.trim();
+            const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
 
-            if (!password) {
+            if (!email || !emailRegex.test(email)) {
                 input.classList.add('error');
                 error.style.display = 'block';
-                error.textContent = 'Please enter a password';
-                setTimeout(() => { input.classList.remove('error'); }, 300);
+                error.textContent = 'Please enter a valid email address';
+                setTimeout(() => { 
+                    input.classList.remove('error'); 
+                    error.style.display = 'none';
+                }, 3000);
                 return;
             }
 
-            // Placeholder check - always shows as "compiling"
-            showToast('Figma library is currently being compiled. Access will be available soon.', 'info', 5000);
+            showToast('Thanks! We\'ll notify you when Figma library goes live.', 'success', 4000);
             input.value = '';
             error.style.display = 'none';
         }
 
-        // Enter key support for Figma password
+        // Enter key support for email input
         document.addEventListener('DOMContentLoaded', () => {
-            const figmaInput = document.getElementById('figmaPassword');
+            const figmaInput = document.getElementById('figmaEmail');
             if (figmaInput) {
                 figmaInput.addEventListener('keypress', (e) => {
                     if (e.key === 'Enter') {
-                        checkFigmaPassword();
+                        notifyMe();
                     }
                 });
             }
