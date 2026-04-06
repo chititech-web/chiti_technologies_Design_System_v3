@@ -1,0 +1,13 @@
+# Placeholder Logo File
+
+This is a placeholder for your logo file.
+
+To add your logo:
+1. Replace this file with your actual logo image (PNG or SVG)
+2. Name it `logo.png` or `logo.svg`
+3. The design system will automatically detect and display it
+
+Recommended specifications:
+- Size: 32x32px or 64x64px for raster images
+- Format: SVG preferred for crisp scaling
+- Background: Transparent preferred
