@@ -90,6 +90,7 @@
             --space-6: calc(var(--p-space) * 6   * var(--dm, 1));   /* 48px */
             --space-8: calc(var(--p-space) * 8   * var(--dm, 1));   /* 64px */
             --radius-sm: 6px; --radius-md: 12px; --radius-lg: 24px; --radius-pill: 9999px;
+            --borderRadius-none: 0; --borderRadius-sm: 0.125rem; --borderRadius-md: 0.375rem; --borderRadius-lg: 0.5rem; --borderRadius-xl: 0.75rem; --borderRadius-2xl: 1rem; --borderRadius-3xl: 1.5rem; --borderRadius-full: 9999px;
             --font-display: 'Outfit', sans-serif;
             --font-body: 'Inter', sans-serif;
             --font-mono: 'JetBrains Mono', monospace;
@@ -663,57 +664,6 @@
 
         <hr>
 
-        <section id="c-patterns">
-            <h2>III — SaaS Pattern Library (Forms & Tables)</h2>
-            <p>Engineered patterns for high-density enterprise workflows.</p>
-
-            <h3 style="margin-top:24px;">Telemetry Data Table (Zebra Pattern)</h3>
-            <div class="comp-card" style="margin-bottom: 24px;">
-                <div class="comp-card-body" style="padding: 0;">
-                    <table class="api-table" style="font-size: 0.9rem;">
-                        <thead>
-                            <tr><th>Node Address</th><th>Traffic Flux</th><th>Status</th><th>Telemetry</th></tr>
-                        </thead>
-                        <tbody id="table-telemetry">
-                            <tr style="background: var(--surface-1);">
-                                <td>192.168.1.45</td><td class="ticker-val" data-base="12.4">12.4K</td><td><span class="c-badge success">READY</span></td><td><div class="c-progress"><div class="c-progress-fill" style="width: 80%;"></div></div></td>
-                            </tr>
-                            <tr style="background: var(--surface-2);">
-                                <td>192.168.1.46</td><td class="ticker-val" data-base="8.2">8.2K</td><td><span class="c-badge warn">SYNC</span></td><td><div class="c-progress"><div class="c-progress-fill" style="width: 45%; background: var(--warning);"></div></div></td>
-                            </tr>
-                            <tr style="background: var(--surface-1);">
-                                <td>192.168.1.47</td><td class="ticker-val" data-base="44.1">44.1K</td><td><span class="c-badge error">BUSY</span></td><td><div class="c-progress"><div class="c-progress-fill" style="width: 95%; background: var(--error);"></div></div></td>
-                            </tr>
-                        </tbody>
-                    </table>
-                </div>
-            </div>
-
-            <h3>Command Form (2-Column Density)</h3>
-            <div class="comp-card">
-                <div class="comp-card-body">
-                    <div style="display: grid; grid-template-columns: 1fr 1fr; gap: var(--space-4);">
-                        <div>
-                            <label style="font-size: 0.8rem; color:var(--text-muted);">Deployment Alias</label>
-                            <input class="c-input" type="text" value="chiti-v3-prod-01" style="margin-top:4px;">
-                        </div>
-                        <div>
-                            <label style="font-size: 0.8rem; color:var(--text-muted);">Instance Type</label>
-                            <select class="c-select" style="margin-top:4px;"><option>T3.XLarge (Optimized)</option></select>
-                        </div>
-                        <div style="grid-column: span 2;">
-                            <label style="font-size: 0.8rem; color:var(--text-muted);">Encryption Key (AES-256)</label>
-                            <input class="c-input" type="password" value="********" style="margin-top:4px;">
-                        </div>
-                        <div style="grid-column: span 2; display:flex; justify-content: flex-end; gap: 12px; margin-top:12px;">
-                            <button class="c-btn ghost">Dry Run</button>
-                            <button class="c-btn primary">Initiate Deployment</button>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </section>
-
         <section id="c-datatable">
             <h2>II.I — Data Table (Telemetry Grid)</h2>
             <div class="comp-card">
@@ -800,6 +750,57 @@
                     <div class="comp-card-body">
                         <div class="demo-stage" style="flex-direction: column;">
                             <select class="c-select"><option>Region: Asia-Pacific</option><option>Region: Europe</option><option>Region: Americas</option></select>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="c-patterns">
+            <h2>II.J — SaaS Pattern Library (Forms & Tables)</h2>
+            <p>Engineered patterns for high-density enterprise workflows.</p>
+
+            <h3 style="margin-top:24px;">Telemetry Data Table (Zebra Pattern)</h3>
+            <div class="comp-card" style="margin-bottom: 24px;">
+                <div class="comp-card-body" style="padding: 0;">
+                    <table class="api-table" style="font-size: 0.9rem;">
+                        <thead>
+                            <tr><th>Node Address</th><th>Traffic Flux</th><th>Status</th><th>Telemetry</th></tr>
+                        </thead>
+                        <tbody id="table-telemetry">
+                            <tr style="background: var(--surface-1);">
+                                <td>192.168.1.45</td><td class="ticker-val" data-base="12.4">12.4K</td><td><span class="c-badge success">READY</span></td><td><div class="c-progress"><div class="c-progress-fill" style="width: 80%;"></div></div></td>
+                            </tr>
+                            <tr style="background: var(--surface-2);">
+                                <td>192.168.1.46</td><td class="ticker-val" data-base="8.2">8.2K</td><td><span class="c-badge warn">SYNC</span></td><td><div class="c-progress"><div class="c-progress-fill" style="width: 45%; background: var(--warning);"></div></div></td>
+                            </tr>
+                            <tr style="background: var(--surface-1);">
+                                <td>192.168.1.47</td><td class="ticker-val" data-base="44.1">44.1K</td><td><span class="c-badge error">BUSY</span></td><td><div class="c-progress"><div class="c-progress-fill" style="width: 95%; background: var(--error);"></div></div></td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+
+            <h3>Command Form (2-Column Density)</h3>
+            <div class="comp-card">
+                <div class="comp-card-body">
+                    <div style="display: grid; grid-template-columns: 1fr 1fr; gap: var(--space-4);">
+                        <div>
+                            <label style="font-size: 0.8rem; color:var(--text-muted);">Deployment Alias</label>
+                            <input class="c-input" type="text" value="chiti-v3-prod-01" style="margin-top:4px;">
+                        </div>
+                        <div>
+                            <label style="font-size: 0.8rem; color:var(--text-muted);">Instance Type</label>
+                            <select class="c-select" style="margin-top:4px;"><option>T3.XLarge (Optimized)</option></select>
+                        </div>
+                        <div style="grid-column: span 2;">
+                            <label style="font-size: 0.8rem; color:var(--text-muted);">Encryption Key (AES-256)</label>
+                            <input class="c-input" type="password" value="********" style="margin-top:4px;">
+                        </div>
+                        <div style="grid-column: span 2; display:flex; justify-content: flex-end; gap: 12px; margin-top:12px;">
+                            <button class="c-btn ghost">Dry Run</button>
+                            <button class="c-btn primary">Initiate Deployment</button>
                         </div>
                     </div>
                 </div>
