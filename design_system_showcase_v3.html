@@ -150,6 +150,7 @@
             .sidebar-overlay { display: block; position: fixed; top: 0; left: 0; width: 100vw; height: 100vh; background: rgba(0,0,0,0.5); z-index: 99; opacity: 0; pointer-events: none; transition: opacity 0.3s; }
             .sidebar.open ~ .sidebar-overlay { opacity: 1; pointer-events: auto; }
         }
+        .sidebar-toggle { display: none; } /* Hidden by default on desktop */
         .sidebar-brand {
             font-family: var(--font-display);
             font-size: 1.4rem;
@@ -200,6 +201,18 @@
             padding: 0 var(--space-4);
             z-index: 200;
             transition: background 0.4s var(--p-ease-smooth);
+        }
+        @media (max-width: 768px) {
+            .controls-bar {
+                position: static;
+                height: auto;
+                padding: var(--space-3) var(--space-4);
+                border: 1px solid var(--border);
+                border-radius: var(--radius-md);
+                margin: var(--space-4) 0;
+                flex-wrap: wrap;
+                justify-content: center;
+            }
         }
         .controls-label { font-family: var(--font-mono); font-size: 0.7rem; color: var(--text-muted); }
         .control-group { display: flex; gap: 6px; }
@@ -627,16 +640,64 @@
 
         <section id="f-radius">
             <h2>I.G — Border Radius Scale</h2>
-            <p>Rounded corners from none to full pill.</p>
-            <div style="display: flex; gap: var(--space-3); flex-wrap: wrap;">
-                <div style="width: 60px; height: 60px; background: var(--brand); border-radius: var(--borderRadius-none);">None</div>
-                <div style="width: 60px; height: 60px; background: var(--brand); border-radius: var(--borderRadius-sm);">SM</div>
-                <div style="width: 60px; height: 60px; background: var(--brand); border-radius: var(--borderRadius-md);">MD</div>
-                <div style="width: 60px; height: 60px; background: var(--brand); border-radius: var(--borderRadius-lg);">LG</div>
-                <div style="width: 60px; height: 60px; background: var(--brand); border-radius: var(--borderRadius-xl);">XL</div>
-                <div style="width: 60px; height: 60px; background: var(--brand); border-radius: var(--borderRadius-2xl);">2XL</div>
-                <div style="width: 60px; height: 60px; background: var(--brand); border-radius: var(--borderRadius-3xl);">3XL</div>
-                <div style="width: 60px; height: 60px; background: var(--brand); border-radius: var(--borderRadius-full);">Full</div>
+            <p>Progressive corner rounding from sharp to fully rounded. Each step represents a meaningful increase in visual softness.</p>
+            <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(100px, 1fr)); gap: var(--space-4); margin-top: var(--space-4);">
+                <div style="display: flex; flex-direction: column; align-items: center; gap: var(--space-2);">
+                    <div style="width: 64px; height: 64px; background: var(--brand); border-radius: var(--borderRadius-none); box-shadow: var(--shadow-sm);"></div>
+                    <div style="text-align: center;">
+                        <div style="font-family: var(--font-mono); font-size: 0.8rem; font-weight: 600; color: var(--text-main);">None</div>
+                        <div style="font-family: var(--font-mono); font-size: 0.7rem; color: var(--text-muted);">0px</div>
+                    </div>
+                </div>
+                <div style="display: flex; flex-direction: column; align-items: center; gap: var(--space-2);">
+                    <div style="width: 64px; height: 64px; background: var(--brand); border-radius: var(--borderRadius-sm); box-shadow: var(--shadow-sm);"></div>
+                    <div style="text-align: center;">
+                        <div style="font-family: var(--font-mono); font-size: 0.8rem; font-weight: 600; color: var(--text-main);">SM</div>
+                        <div style="font-family: var(--font-mono); font-size: 0.7rem; color: var(--text-muted);">2px</div>
+                    </div>
+                </div>
+                <div style="display: flex; flex-direction: column; align-items: center; gap: var(--space-2);">
+                    <div style="width: 64px; height: 64px; background: var(--brand); border-radius: var(--borderRadius-md); box-shadow: var(--shadow-sm);"></div>
+                    <div style="text-align: center;">
+                        <div style="font-family: var(--font-mono); font-size: 0.8rem; font-weight: 600; color: var(--text-main);">MD</div>
+                        <div style="font-family: var(--font-mono); font-size: 0.7rem; color: var(--text-muted);">6px</div>
+                    </div>
+                </div>
+                <div style="display: flex; flex-direction: column; align-items: center; gap: var(--space-2);">
+                    <div style="width: 64px; height: 64px; background: var(--brand); border-radius: var(--borderRadius-lg); box-shadow: var(--shadow-sm);"></div>
+                    <div style="text-align: center;">
+                        <div style="font-family: var(--font-mono); font-size: 0.8rem; font-weight: 600; color: var(--text-main);">LG</div>
+                        <div style="font-family: var(--font-mono); font-size: 0.7rem; color: var(--text-muted);">8px</div>
+                    </div>
+                </div>
+                <div style="display: flex; flex-direction: column; align-items: center; gap: var(--space-2);">
+                    <div style="width: 64px; height: 64px; background: var(--brand); border-radius: var(--borderRadius-xl); box-shadow: var(--shadow-sm);"></div>
+                    <div style="text-align: center;">
+                        <div style="font-family: var(--font-mono); font-size: 0.8rem; font-weight: 600; color: var(--text-main);">XL</div>
+                        <div style="font-family: var(--font-mono); font-size: 0.7rem; color: var(--text-muted);">12px</div>
+                    </div>
+                </div>
+                <div style="display: flex; flex-direction: column; align-items: center; gap: var(--space-2);">
+                    <div style="width: 64px; height: 64px; background: var(--brand); border-radius: var(--borderRadius-2xl); box-shadow: var(--shadow-sm);"></div>
+                    <div style="text-align: center;">
+                        <div style="font-family: var(--font-mono); font-size: 0.8rem; font-weight: 600; color: var(--text-main);">2XL</div>
+                        <div style="font-family: var(--font-mono); font-size: 0.7rem; color: var(--text-muted);">16px</div>
+                    </div>
+                </div>
+                <div style="display: flex; flex-direction: column; align-items: center; gap: var(--space-2);">
+                    <div style="width: 64px; height: 64px; background: var(--brand); border-radius: var(--borderRadius-3xl); box-shadow: var(--shadow-sm);"></div>
+                    <div style="text-align: center;">
+                        <div style="font-family: var(--font-mono); font-size: 0.8rem; font-weight: 600; color: var(--text-main);">3XL</div>
+                        <div style="font-family: var(--font-mono); font-size: 0.7rem; color: var(--text-muted);">24px</div>
+                    </div>
+                </div>
+                <div style="display: flex; flex-direction: column; align-items: center; gap: var(--space-2);">
+                    <div style="width: 64px; height: 64px; background: var(--brand); border-radius: var(--borderRadius-full); box-shadow: var(--shadow-sm);"></div>
+                    <div style="text-align: center;">
+                        <div style="font-family: var(--font-mono); font-size: 0.8rem; font-weight: 600; color: var(--text-main);">Full</div>
+                        <div style="font-family: var(--font-mono); font-size: 0.7rem; color: var(--text-muted);">9999px</div>
+                    </div>
+                </div>
             </div>
         </section>
 
@@ -1064,14 +1125,20 @@
         let isScrolling = false;
         const sections = document.querySelectorAll('section[id]');
         const navLinks = document.querySelectorAll('.nav-link');
+        console.log('Scroll Spy: Found', sections.length, 'sections and', navLinks.length, 'nav links');
+
         const observer = new IntersectionObserver((entries) => {
             if (isScrolling) return;
             entries.forEach(entry => {
                 if (entry.isIntersecting && entry.intersectionRatio > 0.3) {
                     const id = entry.target.getAttribute('id');
+                    console.log('Scroll Spy: Activating section', id);
                     navLinks.forEach(l => l.classList.remove('active'));
                     const active = document.querySelector(`.nav-link[href="#${id}"]`);
-                    if (active) active.classList.add('active');
+                    if (active) {
+                        active.classList.add('active');
+                        console.log('Scroll Spy: Highlighted nav link for', id);
+                    }
                 }
             });
         }, { rootMargin: '-80px 0px -30% 0px', threshold: 0.3 });
